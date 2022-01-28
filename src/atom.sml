@@ -1,8 +1,8 @@
-(* file: var.sml *)
-(* description: variables for nominal terms *)
+(* file: atom.sml *)
+(* description: atoms for nominal terms *)
 (* author: Masaki Haga *)
 
-signature VAR = 
+signature ATOM = 
 sig
     eqtype key
     val name: key -> string
@@ -11,7 +11,7 @@ sig
     val fromString: string -> key
 end
 
-structure Var : VAR =
+structure Atom : ATOM =
 struct
 
 type key = string * int
@@ -22,7 +22,7 @@ fun index (x,i) = i
 
 fun toString (x,i) = if i = 0  then x
 		     else if Int.> (i, 0) then x ^ "_" ^ (Int.toString i)
-		     else raise Fail "Error: Var.toString: var index out of range"
+		     else raise Fail "Error: Atom.toString: atom index out of range"
 
 (* .+_[1-9][0-9]* となっていれば末尾を index とする *)
 fun fromString str = 
